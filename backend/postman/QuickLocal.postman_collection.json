@@ -1,0 +1,97 @@
+{
+  "info": {
+    "name": "QuickLocal API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth Service",
+      "item": [
+        {
+          "name": "Send OTP",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:4002/api/auth/otp/send",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"phoneNumber\": \"+919876543210\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Verify OTP",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:4002/api/auth/otp/verify",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"verificationId\": \"{{verificationId}}\",\n    \"code\": \"123456\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Guest Login",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:4002/api/auth/guest",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"deviceId\": \"test-device-123\",\n    \"deviceType\": \"mobile\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PATCH",
+            "url": "http://localhost:4002/api/auth/profile/{{userId}}",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"profile\": {\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"phone\": \"+919876543210\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "authToken",
+      "value": "your_auth_token_here"
+    },
+    {
+      "key": "userId",
+      "value": "user_id_here"
+    },
+    {
+      "key": "verificationId",
+      "value": "verification_id_here"
+    }
+  ]
+} 
