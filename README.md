@@ -64,6 +64,130 @@ STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
 LOG_LEVEL=debug
 ```
 
+### Auth Service Environment Variables (.env)
+```env
+# Service Configuration
+AUTH_SERVICE_PORT=5001
+AUTH_SERVICE_NAME=auth-service
+
+# Database
+AUTH_DB_URI=mongodb://localhost:27017/quickapp_auth
+
+# JWT Configuration
+AUTH_JWT_SECRET=your_auth_service_jwt_secret
+AUTH_JWT_EXPIRES_IN=24h
+AUTH_REFRESH_TOKEN_SECRET=your_auth_service_refresh_secret
+AUTH_REFRESH_TOKEN_EXPIRES_IN=7d
+
+# Password Reset
+PASSWORD_RESET_TOKEN_EXPIRES_IN=1h
+PASSWORD_RESET_URL=http://localhost:3000/reset-password
+
+# Email Verification
+EMAIL_VERIFICATION_TOKEN_EXPIRES_IN=24h
+EMAIL_VERIFICATION_URL=http://localhost:3000/verify-email
+
+# Rate Limiting
+AUTH_RATE_LIMIT_WINDOW_MS=900000
+AUTH_RATE_LIMIT_MAX_REQUESTS=100
+```
+
+### Delivery Service Environment Variables (.env)
+```env
+# Service Configuration
+DELIVERY_SERVICE_PORT=5002
+DELIVERY_SERVICE_NAME=delivery-service
+
+# Database
+DELIVERY_DB_URI=mongodb://localhost:27017/quickapp_delivery
+
+# Google Maps API
+GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+
+# Delivery Configuration
+MAX_DELIVERY_RADIUS_KM=10
+DELIVERY_FEE_BASE=5.00
+DELIVERY_FEE_PER_KM=1.50
+
+# Real-time Updates
+SOCKET_IO_PORT=5003
+SOCKET_IO_CORS_ORIGIN=http://localhost:3000
+
+# Location Updates
+LOCATION_UPDATE_INTERVAL_MS=30000
+```
+
+### Order Service Environment Variables (.env)
+```env
+# Service Configuration
+ORDER_SERVICE_PORT=5004
+ORDER_SERVICE_NAME=order-service
+
+# Database
+ORDER_DB_URI=mongodb://localhost:27017/quickapp_orders
+
+# Payment Gateway
+STRIPE_SECRET_KEY=your_stripe_secret_key
+STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
+
+# Order Processing
+ORDER_PROCESSING_TIMEOUT_MS=300000
+MAX_ORDER_ITEMS=50
+MIN_ORDER_AMOUNT=10.00
+
+# Notifications
+ORDER_NOTIFICATION_TOPIC=order-updates
+```
+
+### Notification Service Environment Variables (.env)
+```env
+# Service Configuration
+NOTIFICATION_SERVICE_PORT=5005
+NOTIFICATION_SERVICE_NAME=notification-service
+
+# Database
+NOTIFICATION_DB_URI=mongodb://localhost:27017/quickapp_notifications
+
+# Firebase Cloud Messaging
+FCM_SERVER_KEY=your_fcm_server_key
+FCM_SENDER_ID=your_fcm_sender_id
+
+# Email Service
+SMTP_HOST=smtp.example.com
+SMTP_PORT=587
+SMTP_USER=your_smtp_username
+SMTP_PASS=your_smtp_password
+EMAIL_FROM=noreply@quickapp.com
+
+# Push Notifications
+PUSH_NOTIFICATION_BATCH_SIZE=100
+PUSH_NOTIFICATION_INTERVAL_MS=5000
+```
+
+### Payment Service Environment Variables (.env)
+```env
+# Service Configuration
+PAYMENT_SERVICE_PORT=5006
+PAYMENT_SERVICE_NAME=payment-service
+
+# Database
+PAYMENT_DB_URI=mongodb://localhost:27017/quickapp_payments
+
+# Stripe Configuration
+STRIPE_SECRET_KEY=your_stripe_secret_key
+STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
+STRIPE_CURRENCY=usd
+
+# Payment Processing
+PAYMENT_TIMEOUT_MS=300000
+MAX_PAYMENT_AMOUNT=10000.00
+MIN_PAYMENT_AMOUNT=1.00
+
+# Refund Configuration
+REFUND_WINDOW_DAYS=30
+AUTO_REFUND_THRESHOLD=100.00
+```
+
 ## Project Setup
 
 1. Clone the repository
@@ -108,7 +232,9 @@ quickapp/
 │   ├── services/     # Microservices
 │   │   ├── auth-service/
 │   │   ├── delivery-service/
-│   │   └── order-service/
+│   │   ├── order-service/
+│   │   ├── notification-service/
+│   │   └── payment-service/
 │   └── common/       # Shared code and utilities
 └── README.md
 ```
